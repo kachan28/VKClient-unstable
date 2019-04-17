@@ -1,7 +1,5 @@
 ﻿using System.Windows;
 using System.IO;
-using System.Threading;
-using System.Drawing;
 using VKMessenger_by_MK;
 using VkNet.Enums.Filters;
 using VkNet.Exception;
@@ -15,6 +13,9 @@ namespace Vk_Client_by_MK
     /// </summary>
     public partial class Captcha : Window
     {
+        long captcha_sid = 0;
+
+
         public Captcha(CaptchaNeededException ex)
         {
             System.Uri url = ex.Img;
@@ -24,13 +25,13 @@ namespace Vk_Client_by_MK
             CaptchaImage.Height = bitmap.Height;
             CaptchaImage.Width = bitmap.Width;
             CaptchaImage.Source = ToWpfImage(img);
-            long captcha_sid = ex.Sid;
+            captcha_sid = ex.Sid;
             InitializeComponent();
         }
 
         public static BitmapImage ToWpfImage(System.Drawing.Image img)
         {
-            MemoryStream ms = new MemoryStream();  // no using here! BitmapImage will dispose the stream after loading
+            MemoryStream ms = new MemoryStream();
             img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
 
             BitmapImage ix = new BitmapImage();
@@ -56,7 +57,6 @@ namespace Vk_Client_by_MK
                 {   
                     return TwoFactWin.code;
                 }
-
             });
         }
     }

@@ -64,7 +64,7 @@ namespace VKMessenger_by_MK
         private void IDSearch_Is_Focused(object sender, System.Windows.RoutedEventArgs e)
         {
             SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(224, 255, 255));
-            IDSearch.Text = "";    
+            IDSearch.Text = "";
             IDSearch.Foreground = brush;
         }
 
@@ -394,7 +394,7 @@ namespace VKMessenger_by_MK
 
             if (match.Length > 0)
             {
-                attachmentstr = fullmessage.Substring(match.Index, fullmessage.Length - message.Length);
+                attachmentstr = fullmessage.Substring(match.Index);
                 crattachments = Encryption(attachmentstr, MainWindow.SimKeyforMes);
                 File.WriteAllText(Path.Combine(ImageFilePath, "Images.txt"), string.Empty);
                 File.WriteAllText(Path.Combine(ImageFilePath, "Images.txt"), CompressString(crattachments));
@@ -515,24 +515,20 @@ namespace VKMessenger_by_MK
                 fullmessage.Inlines.Add(message);
 
                 List<Image> images = GetImages(Images);
-                string stringimages = "";
                 foreach (Image image in images)
                 {
                     try
                     {
-                        stringimages += "<Image>" + Convert.ToBase64String(ImageToByte(image.Source as BitmapImage)) + "</Image>";
-                        message += stringimages;
+                        message += "<Image>" + Convert.ToBase64String(ImageToByte(image.Source as BitmapImage)) + "</Image>";
                     }
                     catch
                     {
-                        stringimages += "<Image>" + Convert.ToBase64String(ImageToByte(image.Source as TransformedBitmap)) + "</Image>";
-                        message += stringimages;
-                        //MessageBox.Show(ImageToByte(image.Source as TransformedBitmap).Length.ToString());
+                        message += "<Image>" + Convert.ToBase64String(ImageToByte(image.Source as TransformedBitmap)) + "</Image>";
                     }
 
                 }
                 message = Regex.Replace(message, @"\t|\n|\r", "");
-                string messtr = message;                
+                string messtr = message;
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
                     MyMes.Document.Blocks.Clear();
@@ -654,9 +650,8 @@ namespace VKMessenger_by_MK
 
                 if (predmessage != decmessage && !messtate)
                 {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    _ = Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
-                        Image img = new Image();
                         string dectext = "";
                         Regex regnt = new Regex("<Image>");
                         Regex regkt = new Regex("</Image>");
@@ -670,18 +665,42 @@ namespace VKMessenger_by_MK
                             }
                             string enctext = DecompressString(File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "Dec_Images.txt")));
                             dectext = Decryption(enctext, SimKey);
-                            File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "dectestImages.txt"), dectext);
+                            //File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "dectestImages.txt"), dectext);
                         }
-                        catch(Exception e)
+                        catch (Exception e)
                         {
                             //MessageBox.Show(e.ToString());
                         }
-                        if (regnt.Matches(dectext).Count == 1)
+
+                        Paragraph fullmessage = new Paragraph();
+                        Bold name = new Bold(new Run(MainWindow.myname + '\n'))
                         {
-                            try
+                            Foreground = Brushes.Red
+                        };
+                        fullmessage.Inlines.Add(name);
+                        fullmessage.Inlines.Add(Regex.Split(decmessage, "<VkMKDateMes>")[0]);
+                        Chat.Document.Blocks.Add(fullmessage);
+                        Chat.Focus();
+                        Chat.CaretPosition = Chat.Document.ContentEnd;
+                        Chat.ScrollToEnd();
+                        MyMes.Focus();
+
+                        try
+                        {
+                            while (dectext.Length > 0)
                             {
-                                dectext = dectext.Substring(regnt.Match(dectext).Index + regnt.Match(dectext).Length);
-                                BitmapImage bitmap = ToImage(StringToByte(dectext));
+                                string imagetext = dectext.Substring(dectext.IndexOf("<Image>") + 7, dectext.IndexOf("</Image>") - dectext.IndexOf("<Image>") - 7);
+                                try
+                                {
+                                    dectext = dectext.Substring(dectext.IndexOf("</Image>") + 8);
+                                }
+                                catch
+                                {
+                                    dectext = "";
+                                }
+                                File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "dectestImages.txt"), dectext);
+                                BitmapImage bitmap = ToImage(StringToByte(imagetext));
+                                Image img = new Image();
                                 img.Source = bitmap;
                                 TransformedBitmap transformed = new TransformedBitmap();
                                 if (bitmap.Height <= 1000 && bitmap.Height >= 250 && bitmap.Width <= 1000 && bitmap.Width >= 250)
@@ -699,14 +718,6 @@ namespace VKMessenger_by_MK
                                 img.Stretch = Stretch.None;
                                 img.Height = transformed.Height;
                                 img.Width = transformed.Width;
-                                Paragraph fullmessage = new Paragraph();
-                                Bold name = new Bold(new Run(MainWindow.myname + '\n'))
-                                {
-                                    Foreground = Brushes.Red
-                                };
-                                fullmessage.Inlines.Add(name);
-                                fullmessage.Inlines.Add(Regex.Split(decmessage, "<VkMKDateMes>")[0]);
-                                Chat.Document.Blocks.Add(fullmessage);
                                 if (dectext != "")
                                 {
                                     fullmessage.Inlines.Add(Environment.NewLine);
@@ -718,82 +729,13 @@ namespace VKMessenger_by_MK
                                 Chat.CaretPosition = Chat.Document.ContentEnd;
                                 Chat.ScrollToEnd();
                                 MyMes.Focus();
-                                //MessageBox.Show(img.Parent.ToString());
-                                //MessageBox.Show("image!!!");
-                            }
-                            catch (Exception e)
-                            {
-                                //MessageBox.Show(e.ToString());
                             }
                         }
-                        else
+                        catch (Exception e)
                         {
-                            int pregkt = 0;
-                            Paragraph fullmessage = new Paragraph();
-                            Bold name = new Bold(new Run(MainWindow.myname + '\n'))
-                            {
-                                Foreground = Brushes.Red
-                            };
-                            fullmessage.Inlines.Add(name);
-                            fullmessage.Inlines.Add(Regex.Split(decmessage, "<VkMKDateMes>")[0]);
-                            Chat.Document.Blocks.Add(fullmessage);
-                            foreach (Match match in regnt.Matches(dectext))
-                            {
-                                string helptext = "";
-                                //File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "dectestImages.txt"), dectext.Substring(match.Index, regnt.Matches(dectext)[pregkt].Index - match.Index));
-                                try
-                                {
-                                    helptext = dectext.Substring(match.Index + match.Length, regnt.Matches(dectext)[pregkt + 1].Index - match.Index - 15);
-                                }
-                                catch
-                                {
-                                    helptext = dectext.Substring(regnt.Match(dectext).Length);
-                                }
-                                //MessageBox.Show(dectext.Length.ToString());
-                                try
-                                {
-                                    dectext = dectext.Substring(helptext.Length + 15);
-                                }
-                                catch
-                                {
-                                    dectext = dectext.Substring(helptext.Length);
-                                }
-                                //dectext = dectext.Substring(15);
-                                BitmapImage bitmap = ToImage(StringToByte(helptext));
-                                img.Source = bitmap;
-                                TransformedBitmap transformed = new TransformedBitmap();
-                                if (bitmap.Height <= 1000 && bitmap.Height >= 250 && bitmap.Width <= 1000 && bitmap.Width >= 250)
-                                {
-                                    transformed = new TransformedBitmap(bitmap, new ScaleTransform(0.6, 0.6));
-                                }
-                                else
-                                {
-                                    if (bitmap.Height <= 2000 && bitmap.Width <= 2000)
-                                    {
-                                        transformed = new TransformedBitmap(bitmap, new ScaleTransform(0.3, 0.3));
-                                    }
-                                }
-                                img.Source = transformed;
-                                img.Stretch = Stretch.None;
-                                img.Height = transformed.Height;
-                                img.Width = transformed.Width;
-                                fullmessage.Inlines.Add(Environment.NewLine);
-                                fullmessage.Inlines.Add(Environment.NewLine);
-                                if (img.Parent != null)
-                                {
-                                    MessageBox.Show(img.Parent.ToString());
-                                }
-                                fullmessage.Inlines.Add(img);
-                                img = new Image();
-                                pregkt++;
-                            }
-                            fullmessage.Inlines.Add(Environment.NewLine);
-                            Chat.Focus();
-                            Chat.CaretPosition = Chat.Document.ContentEnd;
-                            Chat.ScrollToEnd();
-                            MyMes.Focus();
+                            //MessageBox.Show(e.ToString());
                         }
-                       
+
                     }));
                 }
                 predmessage = decmessage;
@@ -1280,10 +1222,10 @@ namespace VKMessenger_by_MK
             byte[] encbytes = new byte[0];
             while (s.Length > 100)
             {
-                encbytes = Combine(encbytes, Convert.FromBase64String(s.Substring(0,100)));
+                encbytes = Combine(encbytes, Convert.FromBase64String(s.Substring(0, 100)));
                 s = s.Substring(100);
             }
-            encbytes = Combine(encbytes,Convert.FromBase64String(s.Substring(0)));
+            encbytes = Combine(encbytes, Convert.FromBase64String(s.Substring(0)));
             return encbytes;
         }
 

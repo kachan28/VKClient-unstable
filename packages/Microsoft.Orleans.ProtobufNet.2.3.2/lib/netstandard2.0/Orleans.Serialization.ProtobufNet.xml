@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orleans.Serialization.ProtobufNet</name>
+    </assembly>
+    <members>
+        <member name="T:Orleans.Serialization.ProtobufNet.ProtobufNetSerializer">
+            <summary>
+            An implementation of IExternalSerializer for usage with Protobuf types, using the protobuf-net library.
+            </summary>
+        </member>
+        <member name="M:Orleans.Serialization.ProtobufNet.ProtobufNetSerializer.IsSupportedType(System.Type)">
+            <summary>
+            Determines whether this serializer has the ability to serialize a particular type.
+            </summary>
+            <param name="itemType">The type of the item to be serialized</param>
+            <returns>A value indicating whether the type can be serialized</returns>
+        </member>
+        <member name="M:Orleans.Serialization.ProtobufNet.ProtobufNetSerializer.DeepCopy(System.Object,Orleans.Serialization.ICopyContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orleans.Serialization.ProtobufNet.ProtobufNetSerializer.Serialize(System.Object,Orleans.Serialization.ISerializationContext,System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orleans.Serialization.ProtobufNet.ProtobufNetSerializer.Deserialize(System.Type,Orleans.Serialization.IDeserializationContext)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

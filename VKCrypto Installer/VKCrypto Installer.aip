@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="15.8" version="15.8" Modules="simple" RootPath="." Language="en" Id="{EB9C6BFF-FD8A-44D9-AAF3-63D8DDEF3ECF}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;FixupComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_RUN_AS_ADMIN" Value="0"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="Manufacturer" Value="MK"/>
+    <ROW Property="ProductCode" Value="1033:{B7F149F4-7911-4218-9B26-46B850BA8599} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="VKCrypto"/>
+    <ROW Property="ProductVersion" Value="0.0.1" Type="32"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{B359DEE0-0B98-4755-BC0D-B1C057E5E733}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="BouncyCastle.Crypto.dll" ComponentId="{906283DB-29F1-4C8A-ABE7-57629737017E}" Directory_="APPDIR" Attributes="0" KeyPath="BouncyCastle.Crypto.dll"/>
+    <ROW Component="HtmlAgilityPack.dll" ComponentId="{7AA16395-0EEE-4838-964B-A722BB49B20B}" Directory_="APPDIR" Attributes="0" KeyPath="HtmlAgilityPack.dll"/>
+    <ROW Component="HtmlAgilityPack.xml" ComponentId="{28E103AF-A54A-48E2-B64D-6219DB6F1D6F}" Directory_="APPDIR" Attributes="0" KeyPath="HtmlAgilityPack.xml" Type="0"/>
+    <ROW Component="Microsoft.DotNet.PlatformAbstractions.dll" ComponentId="{4F5427CC-4636-4969-A451-7D1A961039BD}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.DotNet.PlatformAbstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.Abstractions.dll" ComponentId="{E443F855-5215-42A9-AFDB-446C3056663D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.Binder.dll" ComponentId="{E76FFDF4-13FE-4D24-B8EB-3C7792219A1A}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.Binder.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.dll" ComponentId="{B0C1A5E0-B1DF-4E1E-BF74-12628CCBBE63}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.dll"/>
+    <ROW Component="Microsoft.Extensions.DependencyInjection.Abstractions.dll" ComponentId="{2A082DBB-5CF2-4078-8DE4-052ECE3FD492}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.DependencyInjection.dll" ComponentId="{4E33B42B-9C4A-4607-9186-C742D16A261F}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.dll"/>
+    <ROW Component="Microsoft.Extensions.DependencyModel.dll" ComponentId="{EF5A442B-E67A-459A-ABE9-11290563644D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.DependencyModel.dll"/>
+    <ROW Component="Microsoft.Extensions.FileProviders.Abstractions.dll" ComponentId="{2D4C3C45-7CBD-43AD-8236-E4C40896FE20}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.FileProviders.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Hosting.Abstractions.dll" ComponentId="{227384F8-1233-428C-A35A-2B9D2119A6E5}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Hosting.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.Abstractions.dll" ComponentId="{070EC097-0ACB-40FE-8547-DF99E33A1F58}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.dll" ComponentId="{3875E561-A0E3-4646-8C24-C7B189D69DA9}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Logging.dll"/>
+    <ROW Component="Microsoft.Extensions.Options.ConfigurationExtensions.dll" ComponentId="{17FDD971-B51C-4BA0-95B5-2DF4E28A0B9B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Options.ConfigurationExtensions.dll"/>
+    <ROW Component="Microsoft.Extensions.Options.dll" ComponentId="{3E15B6E4-46E1-4F3B-B4DB-056BDCC14ACE}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Options.dll"/>
+    <ROW Component="Microsoft.Extensions.Primitives.dll" ComponentId="{37F55702-9B90-404A-BE7B-65DD03585BA9}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Primitives.dll"/>
+    <ROW Component="Newtonsoft.Json.dll" ComponentId="{C5AC5CE4-A9DA-4ACE-811B-BF1E65B0897F}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="Orleans.Core.Abstractions.dll" ComponentId="{948F5660-58AF-43D1-9989-5C894D659DE7}" Directory_="APPDIR" Attributes="0" KeyPath="Orleans.Core.Abstractions.dll"/>
+    <ROW Component="Orleans.Core.dll" ComponentId="{2B1CE45B-1CC7-4E2F-B264-BF7C6184FCBE}" Directory_="APPDIR" Attributes="0" KeyPath="Orleans.Core.dll"/>
+    <ROW Component="Orleans.Serialization.ProtobufNet.dll" ComponentId="{59D4DE97-2E73-4214-9A0B-163A6E21C719}" Directory_="APPDIR" Attributes="0" KeyPath="Orleans.Serialization.ProtobufNet.dll"/>
+    <ROW Component="ProductInformation" ComponentId="{EFD2FB41-3987-4BF6-9087-2D7A5D71E04A}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="System.Buffers.dll" ComponentId="{E192AB2A-1844-4AE4-BA52-7D4244A852FF}" Directory_="APPDIR" Attributes="0" KeyPath="System.Buffers.dll"/>
+    <ROW Component="System.Collections.Immutable.dll" ComponentId="{67E7191F-F6CE-4A33-B2C9-A0EEA29F9345}" Directory_="APPDIR" Attributes="0" KeyPath="System.Collections.Immutable.dll"/>
+    <ROW Component="System.ComponentModel.Annotations.dll" ComponentId="{3EC2A00C-C3F1-4570-B0BD-615CE4B0968D}" Directory_="APPDIR" Attributes="0" KeyPath="System.ComponentModel.Annotations.dll"/>
+    <ROW Component="System.Memory.dll" ComponentId="{9A715DC8-038E-4A16-B7D5-B29B612D1AC2}" Directory_="APPDIR" Attributes="0" KeyPath="System.Memory.dll"/>
+    <ROW Component="System.Numerics.Vectors.dll" ComponentId="{32407DAA-D01E-4709-B10C-E6D4048460DB}" Directory_="APPDIR" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
+    <ROW Component="System.Reflection.Metadata.dll" ComponentId="{5BE52059-F4B3-4B43-BD9A-8E986DA234F0}" Directory_="APPDIR" Attributes="0" KeyPath="System.Reflection.Metadata.dll"/>
+    <ROW Component="System.Reflection.TypeExtensions.dll" ComponentId="{903A69AA-3C7F-430D-8B9A-EF98E3FCB549}" Directory_="APPDIR" Attributes="0" KeyPath="System.Reflection.TypeExtensions.dll"/>
+    <ROW Component="System.Runtime.CompilerServices.Unsafe.dll" ComponentId="{937B0C7D-AC57-461A-A9C7-D42D2DC4F380}" Directory_="APPDIR" Attributes="0" KeyPath="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Component="System.ValueTuple.dll" ComponentId="{4ACB540D-D37C-48BF-9678-3B1F75CA2FF4}" Directory_="APPDIR" Attributes="0" KeyPath="System.ValueTuple.dll"/>
+    <ROW Component="System.Xml.XPath.XmlDocument.dll" ComponentId="{114A79FB-C506-4120-9BE5-72BB58E7C5C9}" Directory_="APPDIR" Attributes="0" KeyPath="System.Xml.XPath.XmlDocument.dll"/>
+    <ROW Component="VKCrypto.exe" ComponentId="{1B873109-2F52-436E-85B6-6E9CF7B5F9D3}" Directory_="APPDIR" Attributes="0" KeyPath="VKCrypto.exe"/>
+    <ROW Component="VkNet.AudioBypassService.dll" ComponentId="{5828D4C5-AA39-4FAC-BA25-69A16EB0B7F3}" Directory_="APPDIR" Attributes="0" KeyPath="VkNet.AudioBypassService.dll"/>
+    <ROW Component="VkNet.dll" ComponentId="{AD4A4126-226E-4B34-A11C-402456D00151}" Directory_="APPDIR" Attributes="0" KeyPath="VkNet.dll"/>
+    <ROW Component="protobufnet.dll" ComponentId="{83FE57AC-D8EF-4A0B-A4B4-44771256E6D2}" Directory_="APPDIR" Attributes="0" KeyPath="protobufnet.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="BouncyCastle.Crypto.dll HtmlAgilityPack.dll HtmlAgilityPack.xml Microsoft.DotNet.PlatformAbstractions.dll Microsoft.Extensions.Configuration.Abstractions.dll Microsoft.Extensions.Configuration.Binder.dll Microsoft.Extensions.Configuration.dll Microsoft.Extensions.DependencyInjection.Abstractions.dll Microsoft.Extensions.DependencyInjection.dll Microsoft.Extensions.DependencyModel.dll Microsoft.Extensions.FileProviders.Abstractions.dll Microsoft.Extensions.Hosting.Abstractions.dll Microsoft.Extensions.Logging.Abstractions.dll Microsoft.Extensions.Logging.dll Microsoft.Extensions.Options.ConfigurationExtensions.dll Microsoft.Extensions.Options.dll Microsoft.Extensions.Primitives.dll Newtonsoft.Json.dll Orleans.Core.Abstractions.dll Orleans.Core.dll Orleans.Serialization.ProtobufNet.dll ProductInformation System.Buffers.dll System.Collections.Immutable.dll System.ComponentModel.Annotations.dll System.Memory.dll System.Numerics.Vectors.dll System.Reflection.Metadata.dll System.Reflection.TypeExtensions.dll System.Runtime.CompilerServices.Unsafe.dll System.ValueTuple.dll System.Xml.XPath.XmlDocument.dll VKCrypto.exe VkNet.AudioBypassService.dll VkNet.dll protobufnet.dll"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="BouncyCastle.Crypto.dll" Component_="BouncyCastle.Crypto.dll" FileName="BOUNCY~1.DLL|BouncyCastle.Crypto.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\BouncyCastle.Crypto.dll" SelfReg="false" NextFile="HtmlAgilityPack.dll"/>
+    <ROW File="HtmlAgilityPack.dll" Component_="HtmlAgilityPack.dll" FileName="HTMLAG~1.DLL|HtmlAgilityPack.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\HtmlAgilityPack.dll" SelfReg="false" NextFile="HtmlAgilityPack.pdb"/>
+    <ROW File="HtmlAgilityPack.pdb" Component_="HtmlAgilityPack.dll" FileName="HTMLAG~1.PDB|HtmlAgilityPack.pdb" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\HtmlAgilityPack.pdb" SelfReg="false" NextFile="HtmlAgilityPack.xml"/>
+    <ROW File="HtmlAgilityPack.xml" Component_="HtmlAgilityPack.xml" FileName="HTMLAG~1.XML|HtmlAgilityPack.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\HtmlAgilityPack.xml" SelfReg="false" NextFile="Microsoft.DotNet.PlatformAbstractions.dll"/>
+    <ROW File="Microsoft.DotNet.PlatformAbstractions.dll" Component_="Microsoft.DotNet.PlatformAbstractions.dll" FileName="MICROS~1.DLL|Microsoft.DotNet.PlatformAbstractions.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.DotNet.PlatformAbstractions.dll" SelfReg="false" NextFile="Microsoft.Extensions.Configuration.Abstractions.dll"/>
+    <ROW File="Microsoft.Extensions.Configuration.Abstractions.dll" Component_="Microsoft.Extensions.Configuration.Abstractions.dll" FileName="MICROS~2.DLL|Microsoft.Extensions.Configuration.Abstractions.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll" SelfReg="false" NextFile="Microsoft.Extensions.Configuration.Abstractions.xml"/>
+    <ROW File="Microsoft.Extensions.Configuration.Abstractions.xml" Component_="HtmlAgilityPack.xml" FileName="MICROS~1.XML|Microsoft.Extensions.Configuration.Abstractions.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml" SelfReg="false" NextFile="Microsoft.Extensions.Configuration.Binder.dll"/>
+    <ROW File="Microsoft.Extensions.Configuration.Binder.dll" Component_="Microsoft.Extensions.Configuration.Binder.dll" FileName="MICROS~3.DLL|Microsoft.Extensions.Configuration.Binder.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Configuration.Binder.dll" SelfReg="false" NextFile="Microsoft.Extensions.Configuration.Binder.xml"/>
+    <ROW File="Microsoft.Extensions.Configuration.Binder.xml" Component_="HtmlAgilityPack.xml" FileName="MICROS~2.XML|Microsoft.Extensions.Configuration.Binder.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Configuration.Binder.xml" SelfReg="false" NextFile="Microsoft.Extensions.Configuration.dll"/>
+    <ROW File="Microsoft.Extensions.Configuration.dll" Component_="Microsoft.Extensions.Configuration.dll" FileName="MICROS~4.DLL|Microsoft.Extensions.Configuration.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Configuration.dll" SelfReg="false" NextFile="Microsoft.Extensions.Configuration.xml"/>
+    <ROW File="Microsoft.Extensions.Configuration.xml" Component_="HtmlAgilityPack.xml" FileName="MICROS~3.XML|Microsoft.Extensions.Configuration.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Configuration.xml" SelfReg="false" NextFile="Microsoft.Extensions.DependencyInjection.Abstractions.dll"/>
+    <ROW File="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Component_="Microsoft.Extensions.DependencyInjection.Abstractions.dll" FileName="MICROS~5.DLL|Microsoft.Extensions.DependencyInjection.Abstractions.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll" SelfReg="false" NextFile="Microsoft.Extensions.DependencyInjection.Abstractions.xml"/>
+    <ROW File="Microsoft.Extensions.DependencyInjection.Abstractions.xml" Component_="HtmlAgilityPack.xml" FileName="MICROS~4.XML|Microsoft.Extensions.DependencyInjection.Abstractions.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml" SelfReg="false" NextFile="Microsoft.Extensions.DependencyInjection.dll"/>
+    <ROW File="Microsoft.Extensions.DependencyInjection.dll" Component_="Microsoft.Extensions.DependencyInjection.dll" FileName="MICROS~6.DLL|Microsoft.Extensions.DependencyInjection.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.DependencyInjection.dll" SelfReg="false" NextFile="Microsoft.Extensions.DependencyInjection.xml"/>
+    <ROW File="Microsoft.Extensions.DependencyInjection.xml" Component_="HtmlAgilityPack.xml" FileName="MICROS~5.XML|Microsoft.Extensions.DependencyInjection.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.DependencyInjection.xml" SelfReg="false" NextFile="Microsoft.Extensions.DependencyModel.dll"/>
+    <ROW File="Microsoft.Extensions.DependencyModel.dll" Component_="Microsoft.Extensions.DependencyModel.dll" FileName="MICROS~7.DLL|Microsoft.Extensions.DependencyModel.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.DependencyModel.dll" SelfReg="false" NextFile="Microsoft.Extensions.FileProviders.Abstractions.dll"/>
+    <ROW File="Microsoft.Extensions.FileProviders.Abstractions.dll" Component_="Microsoft.Extensions.FileProviders.Abstractions.dll" FileName="MICROS~8.DLL|Microsoft.Extensions.FileProviders.Abstractions.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll" SelfReg="false" NextFile="Microsoft.Extensions.FileProviders.Abstractions.xml"/>
+    <ROW File="Microsoft.Extensions.FileProviders.Abstractions.xml" Component_="HtmlAgilityPack.xml" FileName="MICROS~6.XML|Microsoft.Extensions.FileProviders.Abstractions.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml" SelfReg="false" NextFile="Microsoft.Extensions.Hosting.Abstractions.dll"/>
+    <ROW File="Microsoft.Extensions.Hosting.Abstractions.dll" Component_="Microsoft.Extensions.Hosting.Abstractions.dll" FileName="MICROS~9.DLL|Microsoft.Extensions.Hosting.Abstractions.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll" SelfReg="false" NextFile="Microsoft.Extensions.Hosting.Abstractions.xml"/>
+    <ROW File="Microsoft.Extensions.Hosting.Abstractions.xml" Component_="HtmlAgilityPack.xml" FileName="MICROS~7.XML|Microsoft.Extensions.Hosting.Abstractions.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml" SelfReg="false" NextFile="Microsoft.Extensions.Logging.Abstractions.dll"/>
+    <ROW File="Microsoft.Extensions.Logging.Abstractions.dll" Component_="Microsoft.Extensions.Logging.Abstractions.dll" FileName="MICRO~10.DLL|Microsoft.Extensions.Logging.Abstractions.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll" SelfReg="false" NextFile="Microsoft.Extensions.Logging.Abstractions.xml"/>
+    <ROW File="Microsoft.Extensions.Logging.Abstractions.xml" Component_="HtmlAgilityPack.xml" FileName="MICROS~8.XML|Microsoft.Extensions.Logging.Abstractions.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml" SelfReg="false" NextFile="Microsoft.Extensions.Logging.dll"/>
+    <ROW File="Microsoft.Extensions.Logging.dll" Component_="Microsoft.Extensions.Logging.dll" FileName="MICRO~11.DLL|Microsoft.Extensions.Logging.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Logging.dll" SelfReg="false" NextFile="Microsoft.Extensions.Logging.xml"/>
+    <ROW File="Microsoft.Extensions.Logging.xml" Component_="HtmlAgilityPack.xml" FileName="MICROS~9.XML|Microsoft.Extensions.Logging.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Logging.xml" SelfReg="false" NextFile="Microsoft.Extensions.Options.ConfigurationExtensions.dll"/>
+    <ROW File="Microsoft.Extensions.Options.ConfigurationExtensions.dll" Component_="Microsoft.Extensions.Options.ConfigurationExtensions.dll" FileName="MICRO~12.DLL|Microsoft.Extensions.Options.ConfigurationExtensions.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Options.ConfigurationExtensions.dll" SelfReg="false" NextFile="Microsoft.Extensions.Options.ConfigurationExtensions.xml"/>
+    <ROW File="Microsoft.Extensions.Options.ConfigurationExtensions.xml" Component_="HtmlAgilityPack.xml" FileName="MICRO~10.XML|Microsoft.Extensions.Options.ConfigurationExtensions.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Options.ConfigurationExtensions.xml" SelfReg="false" NextFile="Microsoft.Extensions.Options.dll"/>
+    <ROW File="Microsoft.Extensions.Options.dll" Component_="Microsoft.Extensions.Options.dll" FileName="MICRO~13.DLL|Microsoft.Extensions.Options.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Options.dll" SelfReg="false" NextFile="Microsoft.Extensions.Options.xml"/>
+    <ROW File="Microsoft.Extensions.Options.xml" Component_="HtmlAgilityPack.xml" FileName="MICRO~11.XML|Microsoft.Extensions.Options.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Options.xml" SelfReg="false" NextFile="Microsoft.Extensions.Primitives.dll"/>
+    <ROW File="Microsoft.Extensions.Primitives.dll" Component_="Microsoft.Extensions.Primitives.dll" FileName="MICRO~14.DLL|Microsoft.Extensions.Primitives.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Primitives.dll" SelfReg="false" NextFile="Microsoft.Extensions.Primitives.xml"/>
+    <ROW File="Microsoft.Extensions.Primitives.xml" Component_="HtmlAgilityPack.xml" FileName="MICRO~12.XML|Microsoft.Extensions.Primitives.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Microsoft.Extensions.Primitives.xml" SelfReg="false" NextFile="Newtonsoft.Json.dll"/>
+    <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Newtonsoft.Json.dll" SelfReg="false" NextFile="Newtonsoft.Json.pdb"/>
+    <ROW File="Newtonsoft.Json.pdb" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.PDB|Newtonsoft.Json.pdb" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Newtonsoft.Json.pdb" SelfReg="false" NextFile="Newtonsoft.Json.xml"/>
+    <ROW File="Newtonsoft.Json.xml" Component_="HtmlAgilityPack.xml" FileName="NEWTON~1.XML|Newtonsoft.Json.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Newtonsoft.Json.xml" SelfReg="false" NextFile="Orleans.Core.Abstractions.dll"/>
+    <ROW File="Orleans.Core.Abstractions.dll" Component_="Orleans.Core.Abstractions.dll" FileName="ORLEAN~1.DLL|Orleans.Core.Abstractions.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Orleans.Core.Abstractions.dll" SelfReg="false" NextFile="Orleans.Core.Abstractions.pdb"/>
+    <ROW File="Orleans.Core.Abstractions.pdb" Component_="Orleans.Core.Abstractions.dll" FileName="ORLEAN~1.PDB|Orleans.Core.Abstractions.pdb" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Orleans.Core.Abstractions.pdb" SelfReg="false" NextFile="Orleans.Core.Abstractions.xml"/>
+    <ROW File="Orleans.Core.Abstractions.xml" Component_="HtmlAgilityPack.xml" FileName="ORLEAN~1.XML|Orleans.Core.Abstractions.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Orleans.Core.Abstractions.xml" SelfReg="false" NextFile="Orleans.Core.dll"/>
+    <ROW File="Orleans.Core.dll" Component_="Orleans.Core.dll" FileName="ORLEAN~2.DLL|Orleans.Core.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Orleans.Core.dll" SelfReg="false" NextFile="Orleans.Core.pdb"/>
+    <ROW File="Orleans.Core.pdb" Component_="Orleans.Core.dll" FileName="ORLEAN~2.PDB|Orleans.Core.pdb" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Orleans.Core.pdb" SelfReg="false" NextFile="Orleans.Core.xml"/>
+    <ROW File="Orleans.Core.xml" Component_="HtmlAgilityPack.xml" FileName="ORLEAN~2.XML|Orleans.Core.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Orleans.Core.xml" SelfReg="false" NextFile="Orleans.Serialization.ProtobufNet.dll"/>
+    <ROW File="Orleans.Serialization.ProtobufNet.dll" Component_="Orleans.Serialization.ProtobufNet.dll" FileName="ORLEAN~3.DLL|Orleans.Serialization.ProtobufNet.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Orleans.Serialization.ProtobufNet.dll" SelfReg="false" NextFile="Orleans.Serialization.ProtobufNet.pdb"/>
+    <ROW File="Orleans.Serialization.ProtobufNet.pdb" Component_="Orleans.Serialization.ProtobufNet.dll" FileName="ORLEAN~3.PDB|Orleans.Serialization.ProtobufNet.pdb" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Orleans.Serialization.ProtobufNet.pdb" SelfReg="false" NextFile="Orleans.Serialization.ProtobufNet.xml"/>
+    <ROW File="Orleans.Serialization.ProtobufNet.xml" Component_="HtmlAgilityPack.xml" FileName="ORLEAN~3.XML|Orleans.Serialization.ProtobufNet.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\Orleans.Serialization.ProtobufNet.xml" SelfReg="false" NextFile="protobufnet.dll"/>
+    <ROW File="System.Buffers.dll" Component_="System.Buffers.dll" FileName="SYSTEM~1.DLL|System.Buffers.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Buffers.dll" SelfReg="false" NextFile="System.Buffers.xml"/>
+    <ROW File="System.Buffers.xml" Component_="HtmlAgilityPack.xml" FileName="SYSTEM~1.XML|System.Buffers.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Buffers.xml" SelfReg="false" NextFile="System.Collections.Immutable.dll"/>
+    <ROW File="System.Collections.Immutable.dll" Component_="System.Collections.Immutable.dll" FileName="SYSTEM~2.DLL|System.Collections.Immutable.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Collections.Immutable.dll" SelfReg="false" NextFile="System.Collections.Immutable.xml"/>
+    <ROW File="System.Collections.Immutable.xml" Component_="HtmlAgilityPack.xml" FileName="SYSTEM~2.XML|System.Collections.Immutable.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Collections.Immutable.xml" SelfReg="false" NextFile="System.ComponentModel.Annotations.dll"/>
+    <ROW File="System.ComponentModel.Annotations.dll" Component_="System.ComponentModel.Annotations.dll" FileName="SYSTEM~3.DLL|System.ComponentModel.Annotations.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.ComponentModel.Annotations.dll" SelfReg="false" NextFile="System.Memory.dll"/>
+    <ROW File="System.Memory.dll" Component_="System.Memory.dll" FileName="SYSTEM~4.DLL|System.Memory.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Memory.dll" SelfReg="false" NextFile="System.Memory.xml"/>
+    <ROW File="System.Memory.xml" Component_="HtmlAgilityPack.xml" FileName="SYSTEM~3.XML|System.Memory.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Memory.xml" SelfReg="false" NextFile="System.Numerics.Vectors.dll"/>
+    <ROW File="System.Numerics.Vectors.dll" Component_="System.Numerics.Vectors.dll" FileName="SYSTEM~5.DLL|System.Numerics.Vectors.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Numerics.Vectors.dll" SelfReg="false" NextFile="System.Numerics.Vectors.xml"/>
+    <ROW File="System.Numerics.Vectors.xml" Component_="HtmlAgilityPack.xml" FileName="SYSTEM~4.XML|System.Numerics.Vectors.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Numerics.Vectors.xml" SelfReg="false" NextFile="System.Reflection.Metadata.dll"/>
+    <ROW File="System.Reflection.Metadata.dll" Component_="System.Reflection.Metadata.dll" FileName="SYSTEM~6.DLL|System.Reflection.Metadata.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Reflection.Metadata.dll" SelfReg="false" NextFile="System.Reflection.Metadata.xml"/>
+    <ROW File="System.Reflection.Metadata.xml" Component_="HtmlAgilityPack.xml" FileName="SYSTEM~5.XML|System.Reflection.Metadata.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Reflection.Metadata.xml" SelfReg="false" NextFile="System.Reflection.TypeExtensions.dll"/>
+    <ROW File="System.Reflection.TypeExtensions.dll" Component_="System.Reflection.TypeExtensions.dll" FileName="SYSTEM~7.DLL|System.Reflection.TypeExtensions.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Reflection.TypeExtensions.dll" SelfReg="false" NextFile="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW File="System.Runtime.CompilerServices.Unsafe.dll" Component_="System.Runtime.CompilerServices.Unsafe.dll" FileName="SYSTEM~8.DLL|System.Runtime.CompilerServices.Unsafe.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" SelfReg="false" NextFile="System.Runtime.CompilerServices.Unsafe.xml"/>
+    <ROW File="System.Runtime.CompilerServices.Unsafe.xml" Component_="HtmlAgilityPack.xml" FileName="SYSTEM~6.XML|System.Runtime.CompilerServices.Unsafe.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" SelfReg="false" NextFile="System.ValueTuple.dll"/>
+    <ROW File="System.ValueTuple.dll" Component_="System.ValueTuple.dll" FileName="SYSTEM~9.DLL|System.ValueTuple.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.ValueTuple.dll" SelfReg="false" NextFile="System.ValueTuple.xml"/>
+    <ROW File="System.ValueTuple.xml" Component_="HtmlAgilityPack.xml" FileName="SYSTEM~7.XML|System.ValueTuple.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.ValueTuple.xml" SelfReg="false" NextFile="System.Xml.XPath.XmlDocument.dll"/>
+    <ROW File="System.Xml.XPath.XmlDocument.dll" Component_="System.Xml.XPath.XmlDocument.dll" FileName="SYSTE~10.DLL|System.Xml.XPath.XmlDocument.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\System.Xml.XPath.XmlDocument.dll" SelfReg="false" NextFile="VKCrypto.exe"/>
+    <ROW File="VKCrypto.exe" Component_="VKCrypto.exe" FileName="VKCrypto.exe" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\VKCrypto.exe" SelfReg="false" NextFile="VKCrypto.exe.config" DigSign="true"/>
+    <ROW File="VKCrypto.exe.config" Component_="HtmlAgilityPack.xml" FileName="VKCRYP~1.CON|VKCrypto.exe.config" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\VKCrypto.exe.config" SelfReg="false" NextFile="VKCrypto.pdb"/>
+    <ROW File="VKCrypto.pdb" Component_="VKCrypto.exe" FileName="VKCrypto.pdb" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\VKCrypto.pdb" SelfReg="false" NextFile="VkNet.AudioBypassService.dll"/>
+    <ROW File="VkNet.AudioBypassService.dll" Component_="VkNet.AudioBypassService.dll" FileName="VKNETA~1.DLL|VkNet.AudioBypassService.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\VkNet.AudioBypassService.dll" SelfReg="false" NextFile="VkNet.dll"/>
+    <ROW File="VkNet.dll" Component_="VkNet.dll" FileName="VkNet.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\VkNet.dll" SelfReg="false" NextFile="VkNet.xml"/>
+    <ROW File="VkNet.xml" Component_="HtmlAgilityPack.xml" FileName="VkNet.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\VkNet.xml" SelfReg="false"/>
+    <ROW File="protobufnet.dll" Component_="protobufnet.dll" FileName="PROTOB~1.DLL|protobuf-net.dll" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\protobuf-net.dll" SelfReg="false" NextFile="protobufnet.xml"/>
+    <ROW File="protobufnet.xml" Component_="HtmlAgilityPack.xml" FileName="PROTOB~1.XML|protobuf-net.xml" Attributes="0" SourcePath="..\VKCrypto\bin\Debug\protobuf-net.xml" SelfReg="false" NextFile="System.Buffers.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en" InstallationType="4" UseLargeSchema="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
+    <ROW Action="AI_DpiContentScale" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT64 OR ((VersionNT &lt;&gt; 501) OR (ServicePackLevel = 3))) AND ((VersionNT &lt;&gt; 502) OR (ServicePackLevel = 2))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+</DOCUMENT>

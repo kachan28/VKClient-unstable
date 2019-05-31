@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKCrypto", "VKCrypto\VKCrypto.csproj", "{FC5F0521-D3C1-4FBB-B477-3ED5E10C8CC0}"
+EndProject
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "VKCrypto Installer", "VKCrypto Installer\VKCrypto Installer.aiproj", "{B9DDF608-8F5C-49DC-A624-9959148380C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC5F0521-D3C1-4FBB-B477-3ED5E10C8CC0}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{FC5F0521-D3C1-4FBB-B477-3ED5E10C8CC0}.All|Any CPU.Build.0 = Release|Any CPU
+		{FC5F0521-D3C1-4FBB-B477-3ED5E10C8CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC5F0521-D3C1-4FBB-B477-3ED5E10C8CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC5F0521-D3C1-4FBB-B477-3ED5E10C8CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC5F0521-D3C1-4FBB-B477-3ED5E10C8CC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9DDF608-8F5C-49DC-A624-9959148380C9}.All|Any CPU.ActiveCfg = DefaultBuild
+		{B9DDF608-8F5C-49DC-A624-9959148380C9}.All|Any CPU.Build.0 = DefaultBuild
+		{B9DDF608-8F5C-49DC-A624-9959148380C9}.Debug|Any CPU.ActiveCfg = DefaultBuild
+		{B9DDF608-8F5C-49DC-A624-9959148380C9}.Debug|Any CPU.Build.0 = DefaultBuild
+		{B9DDF608-8F5C-49DC-A624-9959148380C9}.Release|Any CPU.ActiveCfg = DefaultBuild
+		{B9DDF608-8F5C-49DC-A624-9959148380C9}.Release|Any CPU.Build.0 = DefaultBuild
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB8CF804-5359-4569-9221-3494B2D48856}
+	EndGlobalSection
+EndGlobal

@@ -455,6 +455,18 @@ namespace VKCrypto
             bool messtate = false;
             while (true)
             {
+                int totalSeconds = (int)(DateTime.Now - DateTime.Today).TotalSeconds;
+                if (totalSeconds % 30 == 0)
+                {
+                    Random random = new Random();
+                    int randid = random.Next(999999);
+                    get.Messages.Send(new MessagesSendParams
+                    {
+                        UserId = get.UserId,
+                        RandomId = randid,
+                        Message = "Ya zdes",
+                    });
+                }
                 string curmessage = "";
                 MessagesGetObject getDialogs;
                 try

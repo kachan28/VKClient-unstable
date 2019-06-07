@@ -6,10 +6,9 @@ using VkNet;
 using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.AudioBypassService.Extensions;
-using Vk_Client_by_MK;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace VKMessenger_by_MK
+namespace VKCrypto
 {
     /// <summary>
     /// Логика взаимодействия для Login.xaml
@@ -31,14 +30,14 @@ namespace VKMessenger_by_MK
                 string docPath = Environment.CurrentDirectory;
                 string[] lines = File.ReadAllLines(Path.Combine(docPath, "LoginData.txt"));
                 var login = lines[0];
-                var password = lines[1];                
-                Auth(login, password, ref api);                
+                var password = lines[1];
+                Auth(login, password, ref api);
                 MainWindow main = new MainWindow();
                 Close();
-                main.Show();                
+                main.Show();
             }
             catch
-            {                
+            {
                 InitializeComponent();
             }
         }
@@ -59,19 +58,19 @@ namespace VKMessenger_by_MK
                     Save_Data(username, password);
                 }
             }
-            catch (ArgumentNullException)
+            /*catch (ArgumentNullException)
             {
                 TwoFactWin codewin = new TwoFactWin();
                 codewin.Show();
                 Close();
-            }
+            }*/
             catch (Exception k)
             {
                 Status.Content = "Check your login and password";
                 MessageBox.Show(k.ToString());
             }
         }
-    
+
 
         private void Username_Given(object sender, KeyEventArgs e)
         {
@@ -91,12 +90,12 @@ namespace VKMessenger_by_MK
                         Save_Data(username, password);
                     }
                 }
-                catch (ArgumentNullException)
+                /*catch (ArgumentNullException)
                 {
                     TwoFactWin codewin = new TwoFactWin();
                     codewin.Show();
                     Close();
-                }
+                }*/
                 catch (Exception k)
                 {
                     Status.Content = "Check your login and password";
@@ -122,19 +121,19 @@ namespace VKMessenger_by_MK
                         Save_Data(username, password);
                     }
                 }
-                catch (ArgumentNullException)
+                /*catch (ArgumentNullException)
                 {
                     TwoFactWin codewin = new TwoFactWin();
                     codewin.Show();
                     Close();
-                }
+                }*/
                 catch (Exception k)
                 {
                     Status.Content = "Check your login and password";
                     MessageBox.Show(k.ToString());
                 }
             }
-        }        
+        }
 
         public void Auth(string username, string password, ref VkApi api)
         {
@@ -143,7 +142,7 @@ namespace VKMessenger_by_MK
                 ApplicationId = 6723320,
                 Login = username,
                 Password = password,
-                Settings = Settings.All                
+                Settings = Settings.All
             });
         }
 

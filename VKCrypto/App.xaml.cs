@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace VKMessenger_by_MK
+namespace VKCrypto
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml

@@ -3,10 +3,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using System.Security.Cryptography;
 using VkNet;
-using Org.BouncyCastle.Crypto;
-using Org.BouncyCastle.Security;
+using System.Data.SQLite;
+using System.IO;
+using VkNet.Model;
+using VkNet.Model.RequestParams;
 
 namespace VKCrypto
 {
@@ -17,9 +18,23 @@ namespace VKCrypto
     {
         public static VkApi api = Login.api;
         public static string myname = api.Account.GetProfileInfo().FirstName;
+        public static bool chatloaded = false;
+
         public MainWindow()
         {
+            //Utils.VKManage.VKSignal Signaller = new Utils.VKManage.VKSignal();
             InitializeComponent();
+
+            SQLiteConnection.CreateFile("Current_Dialogs.sqlite");
+
+            using (SQLiteConnection CrFile_Connection = new SQLiteConnection("Data Source=Current_Dialogs.sqlite;"))
+            {
+                CrFile_Connection.Open();
+                string sql = "create table active_users (id int, pubkey text, simkey text)";
+                SQLiteCommand command = new SQLiteCommand(sql, CrFile_Connection);
+                command.ExecuteNonQuery();
+                CrFile_Connection.Close();
+            }
         }
 
         private void Frame_Navigating(object sender, NavigatingCancelEventArgs e)
@@ -36,7 +51,7 @@ namespace VKCrypto
             {
                 ta.From = new Thickness(0, 0, 500, 0);
             }
-                 (e.Content as Page).BeginAnimation(MarginProperty, ta);
+            (e.Content as Page).BeginAnimation(MarginProperty, ta);
         }
 
         private void Message_Button_Click(object sender, RoutedEventArgs e)
@@ -45,5 +60,24 @@ namespace VKCrypto
             Welcome.Content = "";
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            string filename = "Current_Dialogs.sqlite";
+            if (File.Exists(filename))
+            {
+                try
+                {
+                    File.Delete(filename);
+                }
+                catch(Exception exception)
+                {
+                    MessageBox.Show(exception.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("File is not exist");
+            }
+        }
     }
 }

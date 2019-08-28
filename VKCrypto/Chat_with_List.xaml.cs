@@ -1,25 +1,32 @@
 ﻿using System;
-using System.Windows.Controls;
-using System.Windows.Input;
+using System.IO;
+using System.Net;
 using System.Threading;
 using System.Text;
-using System.Linq;
-using System.Windows.Documents;
-using System.Windows;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.IO;
-using System.Windows.Media.Imaging;
-using System.Net;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Shapes;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Threading;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Collections.Generic;
 using System.IO.Compression;
-using Image = System.Windows.Controls.Image;
 using VkNet;
-using VkNet.Model;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams;
+using VkNet.Model;
 using VkNet.Model.Attachments;
+using VkNet.Model.RequestParams;
+using Path = System.IO.Path;
+using Image = System.Windows.Controls.Image;
+using LTH = System.Windows.LogicalTreeHelper;
+using VTH = System.Windows.Media.VisualTreeHelper;
+using System.Threading.Tasks;
+using System.Data.SQLite;
 
 namespace VKCrypto
 {
@@ -28,30 +35,146 @@ namespace VKCrypto
     /// </summary>
     public partial class Chat_with_List : System.Windows.Controls.Page
     {
-        int idsob;
+
+        long ActiveUserId; string ActivePubKey; string ActiveSimKey;
         public Chat_with_List()
         {
             InitializeComponent();
-            CreateFriendsList();
+            Task GetMesTask = new Task(new Action(GetMessages));
+            GetMesTask.Start();
+            MainWindow.chatloaded = true;
         }
+
+        public void GetMessages()
+            {
+                var longPoll = MainWindow.api.Messages.GetLongPollServer(needPts: true);
+                try
+                {
+                    LongPollHistoryResponse serv = MainWindow.api.Messages.GetLongPollHistory(@params: new MessagesGetLongPollHistoryParams() { Pts = longPoll.Pts });
+                    int mescount = 0;
+                    while (true)
+                    {
+                        try
+                        {
+                            serv = MainWindow.api.Messages.GetLongPollHistory(@params: new MessagesGetLongPollHistoryParams() { Pts = longPoll.Pts });
+                            //MessageBox.Show(serv.Messages[serv.Messages.Count-1].Text);
+                            if (serv.Messages.Count != mescount)
+                            {
+                                Message LastMessage = serv.Messages[serv.Messages.Count - 1];
+                                if (LastMessage.Type == VkNet.Enums.MessageType.Received && ActiveUserId == LastMessage.FromId)
+                                {
+                                    
+                                    Dispatcher.BeginInvoke(new ThreadStart(delegate { Chat.Document.Blocks.Add(new Paragraph(new Run(LastMessage.FromId.ToString()+LastMessage.Text))); }));
+                                    /*long? message_id = serv.Messages[serv.Messages.Count - 1].Id;
+                                    var idlist = new List<ulong>();
+                                    idlist.Add((ulong)message_id);
+                                    var Message = MainWindow.api.Messages.GetById(messageIds: idlist, fields: Enumerable.Empty<string>());
+                                    Attachment documentAttachment = Message[0].Attachments.First(x => x.Type == typeof(Photo));
+                                    string uri = ((Photo)documentAttachment.Instance).Sizes[0].Url.ToString();
+                                    MessageBox.Show(uri);*/
+                                    mescount = serv.Messages.Count;
+                                }
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.ToString());
+                            longPoll = MainWindow.api.Messages.GetLongPollServer(needPts: true);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
+            }
+
+        public void OnLoad(object sender, RoutedEventArgs e)
+            {
+                var CreateFriendListThread = new Thread(() => CreateFriendsList());
+                CreateFriendListThread.SetApartmentState(ApartmentState.STA);
+                CreateFriendListThread.IsBackground = true;
+                CreateFriendListThread.Start();
+            }
+
         public void CreateFriendsList()
         {
-            FullFriendList.Items.Add(MainWindow.api.Account.GetProfileInfo().FirstName + " " + MainWindow.api.Account.GetProfileInfo().LastName + " ID:" + MainWindow.api.UserId);
-
             var friend_list = MainWindow.api.Friends.Get(new FriendsGetParams
             {
                 Order = FriendsOrder.Hints,
-                Fields = ProfileFields.FirstName,
+                Fields = ProfileFields.FirstName | ProfileFields.Photo50,
                 Count = 6000,
-                NameCase = NameCase.Nom
+                NameCase = NameCase.Nom,
             });
+            /*_ = Dispatcher.BeginInvoke(DispatcherPriority.Render, new ThreadStart(delegate
+                {
+                    FullFriendList.Items.Add(MainWindow.api.Account.GetProfileInfo().FirstName + ' ' + MainWindow.api.Account.GetProfileInfo().LastName + " ID:" + MainWindow.api.UserId);
+                }));*/
+            int friendnum = 0;
             foreach (var friend in friend_list)
             {
-                FullFriendList.Items.Add(friend.FirstName + " " + friend.LastName + " ID:" + friend.Id);
+                using (WebClient webClient = new WebClient())
+                {
+                    try
+                    {
+                        webClient.DownloadFile(friend.Photo50.AbsoluteUri, (Path.Combine(Environment.CurrentDirectory, "Friendava" + friendnum.ToString() + ".jpg")));
+                    }
+                    catch { }
+                }
+                Dispatcher.BeginInvoke(new ThreadStart(delegate {
+                    ListBoxItem itemfriend = new ListBoxItem(); itemfriend.Name = "frienditem" + friendnum.ToString();
+                    StackPanel itemstack = new StackPanel(); itemstack.Name = "friendstack" + friendnum.ToString();
+                    Grid itemgrid = new Grid(); for (int i = 0; i < 8; i++) { itemgrid.ColumnDefinitions.Add(new ColumnDefinition()); }
+                    for (int i = 0; i < 3; i++) { itemgrid.RowDefinitions.Add(new RowDefinition()); }
+                    itemgrid.Name = "friendgrid"+friendnum.ToString();
+                    itemstack.Children.Add(itemgrid);
+                    TextBlock friendinfo = new TextBlock(); friendinfo.Text = "  " + friend.FirstName + " " + friend.LastName;
+                    friendinfo.FontSize = 15;
+                    Grid.SetColumn(friendinfo, 5); Grid.SetColumnSpan(friendinfo, 4);
+                    Grid.SetRow(friendinfo, 1); Grid.SetRowSpan(friendinfo, 2); 
+                    itemgrid.Children.Add(friendinfo);
+                    itemfriend.Content = itemstack;
+                    itemfriend.Tag = friend.Id;
+                    FullFriendList.Items.Add(itemfriend); FullFriendList.UpdateLayout();
+                }));
+                friendnum++;
             }
-        }
 
-        private void IDSearch_Is_Focused(object sender, System.Windows.RoutedEventArgs e)
+            _ = Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                int num = 0;
+                System.Collections.IEnumerable  nodes = LTH.GetChildren(FullFriendList);
+                foreach (var node in nodes)
+                {
+                    //MessageBox.Show(node.GetType().ToString());
+                    if (node is string)
+                    {
+                        continue;
+                    }
+                    Visual listitem = (Visual)node;
+                    System.Collections.IEnumerable items = LTH.GetChildren(listitem);
+                    foreach (var item in items)
+                    {
+                        if (item is StackPanel)
+                        {
+                            Grid frgr = VTH.GetChild(item as DependencyObject, 0) as Grid;
+                            ImageBrush friendava = new ImageBrush();
+                            BitmapImage friendbit = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, "Friendava" + num.ToString() + ".jpg")));
+                            friendava.ImageSource = friendbit;
+                            Ellipse ava = new Ellipse();
+                            ava.Height = 50;
+                            ava.Width = 50;
+                            ava.Fill = friendava;
+                            Grid.SetColumn(ava, 0); Grid.SetColumnSpan(ava, 2);
+                            Grid.SetRow(ava, 0); Grid.SetRowSpan(ava, 3);
+                            frgr.Children.Add(ava);
+                        }
+                    }
+                    num++;
+                }
+            }));
+        }
+        /*private void IDSearch_Is_Focused(object sender, System.Windows.RoutedEventArgs e)
         {
             SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(224, 255, 255));
             IDSearch.Text = "";
@@ -72,15 +195,35 @@ namespace VKCrypto
                 var StartDialogThread = new Thread(() => StartDialog(idsob, MainWindow.api, Utils.AsimDecryptor.GetPrivKey(), Utils.SimCrypto.GetSimKeyforMes()));
                 StartDialogThread.Start();
             }
-        }
+        }*/
 
         private void ElementSelected(object sender, MouseButtonEventArgs e)
         {
-
-            string userdata = FullFriendList.SelectedValue.ToString();
-            idsob = Convert.ToInt32(userdata.Substring(userdata.IndexOf("ID:") + 3));
-            var StartDialogThread = new Thread(() => StartDialog(idsob, MainWindow.api, Utils.AsimDecryptor.GetPrivKey(), Utils.SimCrypto.GetSimKeyforMes()));
-            StartDialogThread.Start();
+            ListBoxItem listitem = (ListBoxItem)FullFriendList.SelectedItem;
+            object item = listitem.Content;
+            Grid frgr = VTH.GetChild(item as DependencyObject, 0) as Grid;
+            TextBlock text = VTH.GetChild(frgr as DependencyObject, 0) as TextBlock;
+            object id = listitem.Tag;
+            ActiveUserId = Convert.ToInt64(id.ToString());
+            using (SQLiteConnection CrFile_Connection = new SQLiteConnection("Data Source=Current_Dialogs.sqlite;"))
+            {
+                CrFile_Connection.Open();
+                string sql = string.Format("select * from active_users where id=={0}", Convert.ToInt32(id.ToString()));
+                SQLiteCommand command = new SQLiteCommand(sql, CrFile_Connection);
+                SQLiteDataReader res = command.ExecuteReader();
+                if (res.HasRows == true)
+                {
+                    if (res.Read())
+                    {
+                        int subid = (int)res["id"]; string pubkey = (string)res["pubkey"]; string simkey = (string)res["simkey"];
+                        ActivePubKey = pubkey; ActiveSimKey = simkey;
+                    }
+                }
+                //string result = command.ExecuteScalar().ToString();
+                CrFile_Connection.Close();
+            }
+            //var StartDialogThread = new Thread(() => StartDialog(idsob, MainWindow.api, Utils.AsimDecryptor.GetPrivKey(), Utils.SimCrypto.GetSimKeyforMes()));
+            //StartDialogThread.Start();
         }
 
         private void StartDialog(int idsob, VkApi api, string privkey, string SimKey)
@@ -101,7 +244,7 @@ namespace VKCrypto
                 {
                     api.Messages.Send(new MessagesSendParams
                     {
-                        UserId = idsob,
+                        UserId = ActiveUserId,
                         RandomId = random.Next(99999),
                         Message = "Using VKMessenger by MK"
                     });
@@ -177,7 +320,6 @@ namespace VKCrypto
                 Chat.Document.Blocks.Add(new Paragraph(new Run("Ключ успешно отправлен!!!")));
             }));
         }
-
         private string Get_Sim_Key(VkApi api, int idsob)
         {
             Dispatcher.BeginInvoke(new ThreadStart(delegate
@@ -221,7 +363,7 @@ namespace VKCrypto
             return newkey;
         }
 
-        private void Send_Message(VkApi api, int idsob, string fullmessage)
+        private void Send_Message(VkApi api, long idsob, string fullmessage)
         {
             Random random = new Random();
             int randid = random.Next(999999);
@@ -296,13 +438,17 @@ namespace VKCrypto
                         }
                         catch
                         {
-                            api.Messages.Send(new MessagesSendParams
+                            try
                             {
-                                UserId = idsob,
-                                RandomId = randid,
-                                Message = crmessage,
-                                Attachments = attachments
-                            });
+                                api.Messages.Send(new MessagesSendParams
+                                {
+                                    UserId = idsob,
+                                    RandomId = randid,
+                                    Message = crmessage,
+                                    Attachments = attachments
+                                });
+                            }
+                            catch (Exception e) { MessageBox.Show(e.ToString()); }
                         }
                     }
                 }
@@ -342,12 +488,16 @@ namespace VKCrypto
                         }
                         catch
                         {
-                            api.Messages.Send(new MessagesSendParams
+                            try
                             {
-                                UserId = idsob,
-                                RandomId = randid,
-                                Message = crmessage
-                            });
+                                api.Messages.Send(new MessagesSendParams
+                                {
+                                    UserId = idsob,
+                                    RandomId = randid,
+                                    Message = crmessage
+                                });
+                            }
+                            catch (Exception e) {MessageBox.Show(e.ToString()); }
                         }
                     }
                 }
@@ -431,7 +581,7 @@ namespace VKCrypto
 
                     }));
                 }
-                Send_Message(MainWindow.api, idsob, message);
+                Send_Message(MainWindow.api, ActiveUserId, message);
                 Chat.Document.Blocks.Add(fullmessage);
                 Chat.Focus();
                 Chat.CaretPosition = Chat.Document.ContentEnd;
@@ -445,7 +595,7 @@ namespace VKCrypto
         //[STAThread]
         private void Get_Mes(object mesargums)
         {
-            string sobname = MainWindow.api.Users.Get(new long[] { idsob }).FirstOrDefault().FirstName;
+            string sobname = MainWindow.api.Users.Get(new long[] { ActiveUserId }).FirstOrDefault().FirstName;
             string predmessage = "zhзущшепгтзкищшекгвьезипщывьгпизшщкеигекзипщцнзуищкшецкещицшугеихцущзpweouetvpowiertupmesotrmuser[topetr[vpeto,ivwe[opybiemr[po";
             Array mesargar = new object[3];
             mesargar = (Array)mesargums;
@@ -455,18 +605,6 @@ namespace VKCrypto
             bool messtate = false;
             while (true)
             {
-                int totalSeconds = (int)(DateTime.Now - DateTime.Today).TotalSeconds;
-                if (totalSeconds % 30 == 0)
-                {
-                    Random random = new Random();
-                    int randid = random.Next(999999);
-                    get.Messages.Send(new MessagesSendParams
-                    {
-                        UserId = get.UserId,
-                        RandomId = randid,
-                        Message = "Ya zdes",
-                    });
-                }
                 string curmessage = "";
                 MessagesGetObject getDialogs;
                 try
@@ -500,7 +638,6 @@ namespace VKCrypto
                 }
 
                 string decmessage = curmessage;
-
                 try
                 {
                     decmessage = Utils.SimCrypto.Decryption(curmessage);
@@ -525,6 +662,7 @@ namespace VKCrypto
                             {
                                 webClient.DownloadFile(uri, (Path.Combine(Environment.CurrentDirectory, "Dec_Images.txt")));
                             }
+
                             string enctext = DecompressString(File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "Dec_Images.txt")));
                             dectext = Utils.SimCrypto.Decryption(enctext);
                             //File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "dectestImages.txt"), dectext);
@@ -958,7 +1096,6 @@ namespace VKCrypto
         private void ImageDropped(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            //MessageBox.Show(files[0]);
             try
             {
                 if (Path.GetExtension(files[0]) == ".jpg" || Path.GetExtension(files[0]) == ".jpeg" || Path.GetExtension(files[0]) == ".png")

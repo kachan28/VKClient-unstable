@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VKCrypto"
-        mc:Ignorable="d"
-        Title="VKCrypto" Height="700" Width="900" Background="#597da3" ResizeMode="CanMinimize">
+        mc:Ignorable="d" Closing="Window_Closing"
+        Title="VKCrypto" Height="700" Width="900" Background="#FF4A76A8" ResizeMode="CanMinimize">
     <Window.Resources>
         <Storyboard x:Key="slideLeftToRight"  
                     TargetProperty="RenderTransform.(TranslateTransform.X)"

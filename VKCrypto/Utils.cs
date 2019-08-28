@@ -1,18 +1,21 @@
-﻿using Org.BouncyCastle.Crypto;
+﻿using System;
+using System.Xml;
+using System.Text;
+using System.Security.Cryptography;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Security;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Parameters;
-using Org.BouncyCastle.Security;
-using System;
-using System.Security.Cryptography;
-using System.Text;
-using System.Xml;
+using VkNet.Model.RequestParams;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace VKCrypto
 {
 
     public class Utils
     {
-        public static class Crypto
+        public class Crypto
         {
             public class Sim
             {
@@ -283,6 +286,39 @@ namespace VKCrypto
                 }
             }
         }
+
+        public class VKManage
+        {
+            public class VKSignal
+            {
+                public void SendSignalToLive()
+                {
+                    while (true)
+                    {
+
+                        int totalSeconds = (int)(DateTime.Now - DateTime.Today).TotalSeconds;
+                        if (totalSeconds % 30 == 0)
+                        {
+                            Random random = new Random();
+                            int randid = random.Next(999999);
+                            MainWindow.api.Messages.Send(new MessagesSendParams
+                            {
+                                UserId = MainWindow.api.UserId,
+                                RandomId = randid,
+                                Message = "Ya zdes",
+                            });
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
+                public VKSignal()
+                {
+                    Action SendAction = new Action(SendSignalToLive);
+                    Task SendTask = new Task(SendAction);
+                    SendTask.Start();
+                }
+            }
+        } 
 
         public static Crypto.ASim.Decryptor AsimDecryptor = new Crypto.ASim.Decryptor();
         public static Crypto.ASim.Encryptor AsimEncryptor = new Crypto.ASim.Encryptor();

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:VKCrypto"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="Sign in" Height="300" Width="500" Background="#597da3">
+        Title="Sign in" Height="300" Width="500" Background="#FF4A76A8">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -45,7 +46,7 @@
         <Label Content = "Password:" Grid.Row = "8" Grid.Column = "0" Grid.RowSpan = "3" Grid.ColumnSpan = "2" FontSize = "20" Margin = "37,18,6,5"/>
         <Label Content = "Remember me:" Grid.Row = "7" Grid.Column = "5" Grid.ColumnSpan = "2" Grid.RowSpan = "2" Margin = "20,20,5,-10"/>
         <TextBox Name = "Username" Grid.Row = "6" Grid.Column = "2" Grid.ColumnSpan = "3" Grid.RowSpan = "2" FontSize = "25" KeyDown = "Username_Given"/>
-        <PasswordBox Name = "Password" Grid.Row = "9" Grid.Column = "2" Grid.ColumnSpan = "3" Grid.RowSpan = "2" FontSize = "25" KeyDown = "Password_Given"/>
+        <PasswordBox Name = "Password" Grid.Row = "9" Grid.Column = "2" Grid.ColumnSpan = "3" Grid.RowSpan = "2" FontSize = "25" KeyDown = "Password_Given" PasswordChar='*'/>
         <Button Name = "Sign_In" Content = "Sign in" Grid.Row = "12" Grid.Column = "3" FontSize = "20" FontStyle="Italic" Foreground="White"
                 Margin = "0,0,0,5" Grid.RowSpan = "2" Click = "Sign_In_Clicked"
                 Background ="#00FFFFFF" BorderThickness="0.8" />
